@@ -1,5 +1,5 @@
 #include<iostream>
-#include<cmath>
+
 using namespace std;
 
 int main()
@@ -14,8 +14,9 @@ int main()
 
 		for ( size_t k = 2; k <= 50; k++ )
 		{
-			const int powVal = static_cast< int >( pow( 2, k ) - 1 );
-			
+			//const int powVal = static_cast< int >( pow( 2, k ) - 1 );	
+			const int powVal = ( 1 << k ) - 1;
+
 			if ( 0 == n % powVal )
 			{
 				cout << ( n / powVal ) << endl;
