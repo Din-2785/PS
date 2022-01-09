@@ -17,7 +17,7 @@ int main()
 	{
 		if ( '(' == str[ strIndex ] )
 		{
-			// lazor
+			// lazer
 			if ( ( strIndex < uStringSize - 1 ) && ')' == str[ strIndex + 1 ] )
 			{
 				uPipeCount += uStackSize ;
