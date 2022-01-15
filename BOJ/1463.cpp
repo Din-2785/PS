@@ -2,8 +2,8 @@
 
 using namespace std ;
 
-static int MaxNumber = 1000000 ;
-static int memo[ 1000000 + 1 ] ;
+static const int MaxNumber = 1000000 ;
+static int memo[ MaxNumber + 1 ] ;
 
 int main()
 {
@@ -17,7 +17,7 @@ int main()
 		if ( 0 == i % 3 )
 		{
 			int numOfOperationby3Mod = 1 + memo[ i / 3 ] ;
-			
+
 			if ( numOfOperationby3Mod < memo[ i ] )
 			{
 				memo[ i ] = numOfOperationby3Mod ;
