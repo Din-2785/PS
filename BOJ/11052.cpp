@@ -1,9 +1,9 @@
-#include <iostream>
+#include<iostream>
 
 using namespace std ;
 
-static int d[ 1001 ] ;
-static int p[ 1001 ] ;
+int p[ 1001 ] ;
+int d[ 1001 ] ;
 
 int main()
 {
@@ -12,32 +12,18 @@ int main()
 
 	for ( size_t i = 1; i <= n; i++ )
 	{
-		int v = 0 ;
-		cin >> v ;
-
-		p[ i ] = v ;
+		cin >> p[ i ] ;
 	}
 
-	d[ 1 ] = p[ 1 ] ;
-
-	for ( size_t i = 2; i <= n; i++ )
+	for ( size_t i = 1; i <= n; i++ )
 	{
-		int dynamicMaxVal = 0 ;
-
-		for ( size_t k = 1; k <= ( i / 2 ); k++ )
+		for ( size_t k = 1; k <= i; k++ )
 		{
-			const int maxCandidate = d[ k ] + d[ i - k ] ;
-
-			if ( dynamicMaxVal < maxCandidate )
-			{
-				dynamicMaxVal = maxCandidate ;
-			}
+			d[ i ] = max( d[ i ], d[ i - k ] + p[ k ] ) ;
 		}
-
-		d[ i ] = max( p[ i ], dynamicMaxVal ) ;
 	}
 
-	cout << d[ n ] << '\n' ;
+	cout << d[ n ] << "\n" ;
 
 	return 0 ;
 }
