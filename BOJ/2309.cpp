@@ -47,11 +47,11 @@ int main()
 		sumOfTall += k[ i ] ;
 	}
 
+	sort( k, k + 9 ) ;
+
 	FindPeople() ;
 
 	GetVaildPeople() ;
-
-	sort( found, found + 7 ) ;
 
 	for ( int i = 0; i < 7; i++ )
 	{
