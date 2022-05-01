@@ -1,22 +1,54 @@
 #include<iostream>
-#include<string>
 using namespace std;
 
-char invalidList[ 10 ] ;
-int invalidCount ;
 int n ;
+int invalidCount ;
+int invalidList[ 10 ] ;
 
-bool IsExistInvalidNumber( const string& channelString )
+int GetChannelLength( int n )
 {
-	for ( int i = 0; i < invalidCount; i++ )
+	int ret = 0 ;
+
+	if ( n == 0 )
 	{
-		for ( int s = 0; s < channelString.size(); s++ )
+		return 1 ;
+	}
+
+	while ( n > 0 )
+	{
+		ret++ ;
+		n /= 10 ;
+	}
+
+	return ret ;
+}
+
+bool IsExistInvalidNumber( int n )
+{
+	if ( n == 0 )
+	{
+		for ( int i = 0; i < invalidCount; i++ )
 		{
-			if ( invalidList[ i ] == channelString[ s ] )
+			if ( invalidList[ i ] == 0 )
 			{
 				return true ;
 			}
 		}
+	}
+
+	while ( n > 0 )
+	{
+		int eachNumber = n % 10 ;
+
+		for ( int i = 0; i < invalidCount; i++ )
+		{
+			if ( invalidList[ i ] == eachNumber )
+			{
+				return true ;
+			}
+		}
+
+		n /= 10 ;
 	}
 
 	return false ;
@@ -34,14 +66,17 @@ int main()
 
 	int minPushCount = abs( n - 100 ) ;
 
-	for ( int i = 0; i <= 999999; i++ )
+	for ( int i = 0; i <= 1000000; i++ )
 	{
-		const string channelString = to_string( i ) ;
-		const int candidatePushCount = abs( n - i ) + channelString.size() ;
-		
-		if ( candidatePushCount < minPushCount && !IsExistInvalidNumber( channelString ) )
+		const int channelNumberLength = GetChannelLength( i ) ;
+		const int candidatePushCount = abs( n - i ) + channelNumberLength ;
+
+		if ( candidatePushCount < minPushCount )
 		{
-			minPushCount = candidatePushCount ;
+			if ( false == IsExistInvalidNumber( i ) )
+			{
+				minPushCount = candidatePushCount ;
+			}
 		}
 	}
 
